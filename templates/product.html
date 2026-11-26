@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Product details | BLITZ Store{% endblock %}
+{% block content %}
+<a class="back" href="/">← Back to collection</a>
+{% if error %}
+  <div class="sql-error"><strong>Database query error</strong><code>{{ error }}</code><span>The product request could not be completed.</span></div>
+{% endif %}
+{% if products %}
+{% for p in products %}
+<section class="product-detail">
+  <div class="detail-photo"><img src="{{ p.image_url }}" alt="{{ p.name }}"></div>
+  <div class="detail-copy"><p class="eyebrow">{{ p.category }} / {{ p.sku }}</p><h1>{{ p.name }}</h1><p class="detail-desc">{{ p.description }}</p>
+    <div class="detail-price">₹{{ "%.2f"|format(p.price) }}</div><p class="stock">● In stock · {{ p.stock }} available</p>
+    <a class="button" href="/login">Continue to customer login</a>
+    <p class="small-note">Product reference: {{ p.id }}</p>
+  </div>
+</section>
+{% endfor %}
+{% else %}
+  {% if not error %}<div class="empty-state"><h2>No product found</h2><p class="muted">Try browsing the collection again.</p><a class="button" href="/">Back to store</a></div>{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Your BLITZ account{% endblock %}
+{% block content %}
+<section class="account-hero"><p class="eyebrow">BLITZ ACCOUNT / SIGNED IN</p><h1>Welcome back,<br><span>{{ username }}.</span></h1><p class="muted">You are signed in to the BLITZ Store account area.</p></section>
+{% if is_admin %}
+<section class="completion-panel">
+  <div class="completion-mark">✓</div>
+  <p class="eyebrow">ADMIN ACCESS VERIFIED</p>
+  <h2>Challenge completed.</h2>
+  <p class="muted">You recovered the administrator credentials and successfully authenticated.</p>
+  <div class="flag-label">YOUR FINAL FLAG</div>
+  <code class="flag">{{ final_flag }}</code>
+  <p class="muted flag-help">Submit this flag to complete the BLITZ SQL Injection &amp; SQLMap Lab.</p>
+</section>
+{% else %}
+<section class="account-panel"><h2>Account overview</h2><p>Signed in as <strong>{{ username }}</strong></p><p class="muted">Role: {{ role }}</p><p class="muted">Administrator access is required to complete the challenge.</p></section>
+{% endif %}
+<a class="back-link" href="/logout">Sign out</a>
+{% endblock %}

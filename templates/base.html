@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BLITZ Store — technology, accessories and everyday essentials.">
+  <title>{% block title %}BLITZ Store{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="announcement">Complimentary delivery on orders over ₹2,499 <span>·</span> Thoughtful tech, delivered.</div>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">B</span><span>BLITZ<span class="brand-light">STORE</span></span></a>
+    <form class="header-search" action="/" method="get"><span>⌕</span><input name="q" placeholder="Search products, brands and more" value="{{ request.args.get('q','') }}"><button type="submit">Search</button></form>
+    <nav><a href="/">Shop</a><a href="/login">My account</a><a class="bag-link" href="/login">Bag <span>0</span></a></nav>
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="notice">{{ message }}</div>{% endfor %}{% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer><div class="footer-main"><a class="brand" href="/"><span class="brand-mark">B</span><span>BLITZ<span class="brand-light">STORE</span></span></a><p>Good technology. Better everyday.</p><span>Customer care · Secure checkout · Easy returns</span></div><div class="footer-bottom">© 2026 BLITZ Store <span>Demo storefront · Local security training environment</span></div></footer>
+</body></html>
